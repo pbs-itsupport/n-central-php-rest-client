@@ -21,24 +21,20 @@ We solely use [Laravel](https://www.laravel.com) for our applications, so this p
 ## Table of Contents
  * [Installation](#installation)
  * [Laravel Setup](#laravel-setup)
-    * [Configuration](#configuration)
  * [Generic PHP Setup](#generic-php-setup)
-    * [Examples](#examples)
  * [Authentication](#authentication)
-    * [JWT](#jwt)
  * [Usage](#usage)
-    * [Supported Actions](#supported-actions)
-    * [Using the Client](#using-the-client)
-        * [Getting the Client object](#getting-the-client-object)
-        * [Models](#models)
-        * [Relationships](#relationships)
-        * [Collections](#collections)
-        * [Filtering using "where"](#filtering-using-where)
-        * [Search](#search)
-        * [Limit records returned](#limit-records-returned)
-        * [Order By](#order-by)
-        * [Pagination](#pagination)
-    * [More Examples](#more-examples)
+     * [Supported Actions](#supported-actions-for-spinenncentralapiclient)
+     * [Using the Client](#using-the-client)
+         * [Models](#models)
+         * [Relationships](#relationships)
+         * [Collections](#collections)
+         * [Filtering using "where"](#filtering-using-where)
+         * [Limit records returned](#limit-records-returned)
+         * [Order By](#order-by)
+         * [Pagination](#pagination)
+     * [More Examples](#more-examples)
+ * [Open Items](#open-items)
  * [Known Issues](#known-issues)
 
 ## Installation
@@ -101,7 +97,7 @@ $ composer require spinen/n-central-php-rest-client
 
 ## Generic PHP Setup
 
-1. You need to build up an array of configs to pass into the N-central object.  You review the `ncentral.php` file in the `configs` directory.  All of the properties are documented in the file.
+1. You need to build up an array of configs to pass into the N-central object.  You review the `ncentral.php` file in the `config` directory.  All of the properties are documented in the file.
 
 2. Depending on your needs, you can either work with the N-central client or the Builder
 
@@ -128,11 +124,9 @@ $ composer require spinen/n-central-php-rest-client
 
     > $builder = (new Spinen\Ncentral\Support\Builder)->setClient($ncentral);
     = Spinen\Ncentral\Support\Builder {#2757}
-
-    >
     ```
 
-    If using the `ncentral` property from the `user` model, it the will work exactly like all of the examples below where `$builder` is used.
+    If using the `ncentral` property from the `user` model, it will work exactly like all of the examples below where `$builder` is used.
 
 ## Authentication
 
@@ -142,7 +136,7 @@ N-central uses a JWT token for a user that is limited to only API calls.  This p
 
 ### Supported Actions for `Spinen\Ncentral\Api\Client`
 
-* _[NOT YET SUPPORTED BY API]_ ~~`delete(string $path)` - Shortcut to the `request()` method with 'DELETE' as the last parameter~~
+* `delete(string $path)` - Shortcut to the `request()` method with 'DELETE' as the last parameter
 
 * `get(string $path)` - Shortcut to the `request()` method with 'GET' as the last parameter
 
@@ -203,18 +197,31 @@ The API responses are cast into models with the properties cast into the types a
 
 #### Relationships
 
-> NOTE: Not yet setup
-
 Some of the responses have links to the related resources.  If a property has a relationship, you can call it as a method and the additional calls are automatically made & returned.  The value is stored in place of the original data, so once it is loaded it is cached.
 
 ```php
+> $device = $builder->devices()->first()
 
+> $device->customer()->first()
+= Spinen\Ncentral\Customer {#4971
+    // properties
+  }
 ```
 
 You may also call these relationships as attributes, and the Client will return a `Collection` for you (just like Eloquent).
 
 ```php
+> $customer = $builder->customers()->first()
 
+> $customer->devices
+= Spinen\Ncentral\Support\Collection {#4999
+    all: [
+      Spinen\Ncentral\Device {#4991
+        // properties
+      },
+      // more...
+    ],
+  }
 ```
 
 #### Collections
@@ -249,6 +256,22 @@ You can call the `take` or `limit` methods (take is an alias to limit) on the bu
 = 7
 ```
 
+#### Order By
+
+The results can be ordered using `orderBy`, `orderByDesc`, `latest`, or `oldest` methods on the builder.
+
+```php
+> $devices = $builder->devices()->orderBy('longName')->get()
+= Spinen\Ncentral\Support\Collection {#4761
+    // ordered results
+  }
+
+> $devices = $builder->devices()->latest()->get()
+= Spinen\Ncentral\Support\Collection {#4762
+    // ordered results
+  }
+```
+
 #### Pagination
 
 Several of the endpoints support pagination.  You can use simple pagination by chaining `pagination` with an optional size value to the builder.  You can get a specific page with the `page` method that takes page number as a parameter.  You can condense the call by passing pagination size as the second parameter to the `page` method.
@@ -275,20 +298,23 @@ Several of the endpoints support pagination.  You can use simple pagination by c
 > $builder->customers->count()
 = 4
 
-$builder->statuses->pluck('customerName', 'customerId')->sort()
+> $builder->customers->pluck('customerName', 'customerId')->sort()
 = Spinen\Ncentral\Support\Collection {#4959
     all: [
-      18 => "Customer A",
-      17 => "Customer B",
+      249 => "Customer1",
+      250 => "Customer2",
     ],
   }
 ```
 
 ## Open Items
 
-* Setup the relationships in the models
+* Add missing models from API
 * Add getters to models
 * Add scopes on models
+* Expand relationship coverage to additional models
+* Implement `PUT` support once API supports it
+* Improve error handling throughout codebase
 
 ## Known Issues
 
