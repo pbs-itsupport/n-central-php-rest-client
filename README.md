@@ -327,7 +327,7 @@ Based on the [N-central OpenAPI spec](https://nfr.n-able.com/api-explorer/openap
 - [x] Add `Users` model (`GET /api/users`, `GET /api/users/me`, `PATCH` user)
 - [x] Add `DeviceCustomProperty` support (`GET/PUT /api/devices/{id}/custom-properties`)
 - [x] Add `OrgUnitCustomProperty` support (`GET/PUT /api/org-units/{id}/custom-properties`)
-- [ ] Add registration token retrieval for customers/sites/org-units
+- [x] Add registration token retrieval for customers/sites/org-units (via `$orgUnit->registrationToken()`)
 - [x] Implement `select` query parameter for sparse fieldsets
 - [x] Implement `sortBy`/`sortOrder` query parameters (already existed as `orderBy`/`orderByDesc`)
 
