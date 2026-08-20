@@ -32,6 +32,8 @@ use Spinen\Ncentral\Support\Relations\HasMany;
  * @property string $uri
  * @property-read Customer $customer
  * @property-read Collection|DeviceNote[] $notes
+ * @property-read DeviceAsset $asset
+ * @property-read DeviceLifecycle $lifecycle
  */
 class Device extends Model
 {
@@ -76,5 +78,21 @@ class Device extends Model
     public function notes(): HasMany
     {
         return $this->hasMany(DeviceNote::class);
+    }
+
+    /**
+     * Get the asset information for this device
+     */
+    public function asset(): HasMany
+    {
+        return $this->hasMany(DeviceAsset::class);
+    }
+
+    /**
+     * Get the lifecycle information for this device
+     */
+    public function lifecycle(): HasMany
+    {
+        return $this->hasMany(DeviceLifecycle::class);
     }
 }
