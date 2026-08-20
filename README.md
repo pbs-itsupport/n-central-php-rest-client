@@ -312,6 +312,7 @@ The following models are available through the builder:
 | `serverInfo` | `ServerInfo` | N-central server information |
 | `serviceOrganizations` | `ServiceOrganization` | Service organizations |
 | `sites` | `Site` | Customer sites |
+| `users` | `User` | N-central users |
 
 ## Known Issues
 
@@ -323,12 +324,12 @@ Based on the [N-central OpenAPI spec](https://nfr.n-able.com/api-explorer/openap
 
 ### High Priority
 
-- [ ] Add `Users` model (`GET /api/users`, `GET /api/users/me`, `PATCH` user)
-- [ ] Add `DeviceCustomProperty` support (`GET/PUT /api/devices/{id}/custom-properties`)
-- [ ] Add `OrgUnitCustomProperty` support (`GET/PUT /api/org-units/{id}/custom-properties`)
+- [x] Add `Users` model (`GET /api/users`, `GET /api/users/me`, `PATCH` user)
+- [x] Add `DeviceCustomProperty` support (`GET/PUT /api/devices/{id}/custom-properties`)
+- [x] Add `OrgUnitCustomProperty` support (`GET/PUT /api/org-units/{id}/custom-properties`)
 - [ ] Add registration token retrieval for customers/sites/org-units
-- [ ] Implement `select` query parameter for sparse fieldsets
-- [ ] Implement `sortBy`/`sortOrder` query parameters
+- [x] Implement `select` query parameter for sparse fieldsets
+- [x] Implement `sortBy`/`sortOrder` query parameters (already existed as `orderBy`/`orderByDesc`)
 
 ### Medium Priority
 
