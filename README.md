@@ -332,19 +332,19 @@ Based on the [N-central OpenAPI spec](https://nfr.n-able.com/api-explorer/openap
 
 ### Medium Priority
 
-- [ ] Add `AccessGroup` model (`GET /api/access-groups`)
-- [ ] Add `DeviceNote` CRUD operations (`GET/POST/PUT/DELETE /api/devices/{id}/notes`)
-- [ ] Add `DeviceAsset` and lifecycle-info support
-- [ ] Add `MaintenanceWindow` support (`GET/POST/PUT/DELETE /api/devices/maintenance-windows`)
-- [ ] Add `ServiceMonitorStatus` endpoint (`GET /api/devices/{id}/service-monitor-status`)
-- [ ] Add `ActiveIssue` for org-units (`GET /api/org-units/{id}/active-issues`)
-- [ ] Add `JobStatus` for org-units (`GET /api/org-units/{id}/job-statuses`)
-- [ ] Add `SoftwareInstaller` support (`GET/POST /api/customers/{id}/software/installers`)
-- [ ] Add `Report` endpoints (`GET /api/report/{reportId}`)
-- [ ] Add `POST /api/device` (device creation)
-- [ ] Add `DELETE /api/devices/{id}` (device deletion)
-- [ ] Add `POST /api/customers/{id}/sites` (site creation)
-- [ ] Add `POST /api/scheduled-tasks/direct` (direct task execution)
+- [x] Add `AccessGroup` model (`GET /api/access-groups`)
+- [x] Add `DeviceNote` CRUD operations (`GET/POST/PUT/DELETE /api/devices/{id}/notes`)
+- [x] Add `DeviceAsset` and lifecycle-info support
+- [x] Add `MaintenanceWindow` support (`GET/POST/PUT/DELETE /api/devices/maintenance-windows`)
+- [x] Add `ServiceMonitorStatus` endpoint (`GET /api/devices/{id}/service-monitor-status`)
+- [x] Add `ActiveIssue` for org-units (`GET /api/org-units/{id}/active-issues`)
+- [x] Add `JobStatus` for org-units (`GET /api/org-units/{id}/job-statuses`)
+- [x] Add `SoftwareInstaller` support (`GET/POST /api/customers/{id}/software/installers`)
+- [x] Add `Report` endpoints (`GET /api/report/{reportId}`)
+- [x] Add `POST /api/device` (device creation) - already supported via `Device->save()`
+- [x] Add `DELETE /api/devices/{id}` (device deletion) - already supported via `Device->delete()`
+- [x] Add `POST /api/customers/{id}/sites` (site creation) - already supported via `$customer->sites()`
+- [x] Add `POST /api/scheduled-tasks/direct` (direct task execution) - already supported
 
 ### Low Priority
 
