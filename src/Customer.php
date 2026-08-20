@@ -15,6 +15,7 @@ use Spinen\Ncentral\Support\Relations\HasMany;
  * @property-read ServiceOrganization $serviceOrganization
  * @property-read \Spinen\Ncentral\Support\Collection $sites
  * @property-read \Spinen\Ncentral\Support\Collection $devices
+ * @property-read \Spinen\Ncentral\Support\Collection|SoftwareInstaller[] $softwareInstallers
  */
 class Customer extends OrgUnit
 {
@@ -77,5 +78,13 @@ class Customer extends OrgUnit
         $related->parentModel = null;
 
         return $relation;
+    }
+
+    /**
+     * Get software installers for this customer
+     */
+    public function softwareInstallers(): HasMany
+    {
+        return $this->hasMany(SoftwareInstaller::class);
     }
 }
