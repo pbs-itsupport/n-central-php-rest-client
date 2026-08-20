@@ -2,8 +2,10 @@
 
 namespace Spinen\Ncentral;
 
+use Spinen\Ncentral\Support\Collection;
 use Spinen\Ncentral\Support\Model;
 use Spinen\Ncentral\Support\Relations\BelongsTo;
+use Spinen\Ncentral\Support\Relations\HasMany;
 
 /**
  * Class Device
@@ -29,6 +31,7 @@ use Spinen\Ncentral\Support\Relations\BelongsTo;
  * @property string $supportedOSLabel
  * @property string $uri
  * @property-read Customer $customer
+ * @property-read Collection|DeviceNote[] $notes
  */
 class Device extends Model
 {
@@ -65,5 +68,13 @@ class Device extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class, 'customerId');
+    }
+
+    /**
+     * Get the notes for this device
+     */
+    public function notes(): HasMany
+    {
+        return $this->hasMany(DeviceNote::class);
     }
 }
