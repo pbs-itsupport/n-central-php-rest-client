@@ -69,4 +69,18 @@ abstract class OrgUnit extends Model
     {
         return $this->hasMany(OrgUnitCustomProperty::class);
     }
+
+    /**
+     * Get the registration token for this org unit
+     *
+     * @return string|null The registration token
+     */
+    public function registrationToken(): ?string
+    {
+        $response = $this->getClient()->request(
+            $this->getPath('/registration-token')
+        );
+
+        return $response['registrationToken'] ?? null;
+    }
 }
