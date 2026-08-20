@@ -430,6 +430,18 @@ class Builder
     }
 
     /**
+     * Limit response to specific fields
+     *
+     * @param  array|string  $fields
+     */
+    public function select(array|string $fields): self
+    {
+        return $this->where('select', implode(',', Arr::wrap($fields)));
+    }
+
+
+
+    /**
      * Shortcut to where property is false
      *
      * @throws InvalidRelationshipException
