@@ -34,6 +34,7 @@ use Spinen\Ncentral\Support\Relations\HasMany;
  * @property-read Collection|DeviceNote[] $notes
  * @property-read DeviceAsset $asset
  * @property-read DeviceLifecycle $lifecycle
+ * @property-read Collection|MaintenanceWindow[] $maintenanceWindows
  */
 class Device extends Model
 {
@@ -94,5 +95,13 @@ class Device extends Model
     public function lifecycle(): HasMany
     {
         return $this->hasMany(DeviceLifecycle::class);
+    }
+
+    /**
+     * Get the maintenance windows for this device
+     */
+    public function maintenanceWindows(): HasMany
+    {
+        return $this->hasMany(MaintenanceWindow::class);
     }
 }
