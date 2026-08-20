@@ -35,6 +35,7 @@ use Spinen\Ncentral\Support\Relations\HasMany;
  * @property-read DeviceAsset $asset
  * @property-read DeviceLifecycle $lifecycle
  * @property-read Collection|MaintenanceWindow[] $maintenanceWindows
+ * @property-read Collection|ServiceMonitorStatus[] $serviceMonitorStatus
  */
 class Device extends Model
 {
@@ -103,5 +104,13 @@ class Device extends Model
     public function maintenanceWindows(): HasMany
     {
         return $this->hasMany(MaintenanceWindow::class);
+    }
+
+    /**
+     * Get the service monitor status for this device
+     */
+    public function serviceMonitorStatus(): HasMany
+    {
+        return $this->hasMany(ServiceMonitorStatus::class);
     }
 }
