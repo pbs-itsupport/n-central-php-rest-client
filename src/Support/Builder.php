@@ -22,6 +22,7 @@ use Spinen\Ncentral\ScheduledTask;
 use Spinen\Ncentral\ServerInfo;
 use Spinen\Ncentral\ServiceOrganization;
 use Spinen\Ncentral\Site;
+use Spinen\Ncentral\User;
 
 /**
  * Class Builder
@@ -86,6 +87,7 @@ class Builder
         'serverInfo' => ServerInfo::class,
         'serviceOrganizations' => ServiceOrganization::class,
         'sites' => Site::class,
+        'users' => User::class,
     ];
 
     /**
