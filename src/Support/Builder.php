@@ -8,6 +8,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection as LaravelCollection;
 use Illuminate\Support\Traits\Conditionable;
 use RuntimeException;
+use Spinen\Ncentral\AccessGroup;
 use Spinen\Ncentral\Concerns\HasClient;
 use Spinen\Ncentral\Customer;
 use Spinen\Ncentral\DetailedScheduledTask;
@@ -77,6 +78,7 @@ class Builder
      * @var array
      */
     protected $rootModels = [
+        'accessGroups' => AccessGroup::class,
         'customers' => Customer::class,
         'detailedScheduledTasks' => DetailedScheduledTask::class,
         'devices' => Device::class,
