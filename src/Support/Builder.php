@@ -19,6 +19,7 @@ use Spinen\Ncentral\Exceptions\InvalidRelationshipException;
 use Spinen\Ncentral\Exceptions\ModelNotFoundException;
 use Spinen\Ncentral\Exceptions\NoClientException;
 use Spinen\Ncentral\Health;
+use Spinen\Ncentral\Report;
 use Spinen\Ncentral\ScheduledTask;
 use Spinen\Ncentral\ServerInfo;
 use Spinen\Ncentral\ServiceOrganization;
@@ -84,6 +85,7 @@ class Builder
         'devices' => Device::class,
         'deviceTasks' => DeviceTask::class,
         'health' => Health::class,
+        'reports' => Report::class,
         'scheduledTasks' => ScheduledTask::class,
         'serverInfo' => ServerInfo::class,
         'serviceOrganizations' => ServiceOrganization::class,
