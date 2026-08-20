@@ -2,7 +2,9 @@
 
 namespace Spinen\Ncentral;
 
+use Spinen\Ncentral\Support\Collection;
 use Spinen\Ncentral\Support\Model;
+use Spinen\Ncentral\Support\Relations\HasMany;
 
 /**
  * Abstract Class OrgUnit
@@ -31,6 +33,7 @@ use Spinen\Ncentral\Support\Model;
  * @property ?string $stateProv
  * @property ?string $street1
  * @property ?string $street2
+ * @property-read Collection|OrgUnitCustomProperty[] $customProperties
  */
 abstract class OrgUnit extends Model
 {
@@ -58,4 +61,12 @@ abstract class OrgUnit extends Model
      * Is the model readonly?
      */
     protected bool $readonlyModel = true;
+
+    /**
+     * Get the custom properties for this org unit
+     */
+    public function customProperties(): HasMany
+    {
+        return $this->hasMany(OrgUnitCustomProperty::class);
+    }
 }
